@@ -2,7 +2,7 @@
 use_bpm 95
 use_synth :piano
 
-define :tokyo do |x,y|
+define :tokyo do |additionalNote, additionalSleep, s1|
   play :r
   sleep 0.5
   play :Bb4
@@ -11,10 +11,8 @@ define :tokyo do |x,y|
   sleep 0.25
   play :Db4
   sleep 0.5
-  play x
-  sleep y
-end
-define :tokyo2 do
+  play :Eb4
+  sleep 0.25
   play :r
   sleep 0.5
   play :Bb4
@@ -22,7 +20,13 @@ define :tokyo2 do
   play :E4
   sleep 0.25
   play :D4
-  sleep 0.5
+  sleep s1
+  play additionalNote
+  sleep additionalSleep
+end
+define :tokyo2 do
+  
+  
   play :F4
   sleep 0.75
   play :F4
@@ -67,8 +71,16 @@ define :tokyo3 do
   sleep 0.25
 end
 
+define :tokyoBass do |x,z,y|
+  use_synth :piano
+  play x ,amp: 1
+  play z ,amp: 1
+  sleep y
+end
+
+
 live_loop :tokyovania do
-  3.times do
+  5.times do
     tokyo :eb4,0.25
     tokyo2
     tokyo :r,0.25
@@ -76,6 +88,27 @@ live_loop :tokyovania do
   end
   stop
 end
+live_loop
+tokyoBass :Cb3,:Cb4, 1
+tokyoBass :Cb3,:r, 1
+tokyoBass :Db3,:r, 1
+tokyoBass :Db3,:r, 1
+tokyoBass :Bb2, :r, 1
+tokyoBass :Bb2, :r, 1
+tokyoBass :Eb3, :r, 1
+tokyoBass :Eb3, :r, 0.5
+tokyoBass :Db3, :r, 0.5
+tokyoBass :Cb3, :Eb3, 1
+tokyoBass :Cb3, :Eb3, 1
+tokyoBass :Db3, :F3, 1
+tokyoBass :Db3, :F3, 1
+tokyoBass :Bb2, :Db3, 1
+tokyoBass :Bb2, :Db3, 1
+tokyoBass :E3, :r, 1
+tokyoBass :E3, :r, 0.5
+tokyoBass :Db3, :r, 0.5
+
+
 sleep 10
 
 live_loop :beat do
@@ -93,7 +126,7 @@ end
 sleep 16
 
 live_loop :drum do
-  40.times do
+  20.times do
     sample :drum_bass_soft
     sleep 1
   end
