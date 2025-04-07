@@ -55,15 +55,15 @@ define :tokyo3 do
   sleep 1
   play :Gb4
   sleep 0.5
-  play :B3
+  play :Bb3
   sleep 0.25
-  play :B3
+  play :Bb3
   sleep 0.25
-  play :E4
+  play :Eb4
   sleep 0.25
   play :Db4
   sleep 0.5
-  play :E4
+  play :Eb4
   sleep 0.25
 end
 
@@ -73,11 +73,32 @@ define :tokyoBass do |x,z,y|
   play z ,amp: 1
   sleep y
 end
+live_loop :drum do
+  a = 0.1
+  90.times do
+    sample :drum_snare_soft, amp: a
+    sleep 1
+    live_loop :sound do
+      if a > 1
+        5.times do
+          a=a+0.1
+        end
+        
+      elsif a == 1
+        stop
+      end
+    end
+  end
+  stop
+end
+
+
+sleep 8
 
 
 live_loop :tokyovania do
   5.times do
-    tokyo 0.5, :Fb4, 0.75, :r , 0
+    tokyo 0.5, :F4, 0.75, :r , 0
     tokyo2
     tokyo  0.75, :r, 0 , :D4, 1
     tokyo3
@@ -106,28 +127,4 @@ live_loop :tokyovaniaLow do
     tokyoBass :Db3, :r, 0.5
   end
   stop
-end
-
-
-sleep 10
-
-live_loop :beat do
-  16.times do
-    sample :bd_tek, amp: 0.75
-    sleep 1
-  end
-  40.times do
-    sample :bd_tek, amp: 1
-    sleep 0.5
-  end
-  stop
-end
-
-sleep 16
-
-live_loop :drum do
-  20.times do
-    sample :drum_bass_soft
-    sleep 1
-  end
 end
