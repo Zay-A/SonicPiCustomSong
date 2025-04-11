@@ -199,9 +199,8 @@ live_loop :bede do
   stop
 end
 
-
 sleep 16
 
-sample cat, amp: 4
+sample cat, amp: 5
 
 tokyoEnd
