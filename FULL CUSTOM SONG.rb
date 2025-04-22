@@ -1,4 +1,4 @@
-FIRST SONG
+FIRST SONG - Under Night In-Birth
 
 use_bpm 95
 sample "C:/Users/zaydan_alim/Downloads/Super Mario Bros. - Mushroom Sound Effect.wav"
@@ -70,7 +70,7 @@ end
 
 sleep 16
 
-SECOND SONG
+SECOND SONG - Tokyovania
 
 use_bpm 95
 use_synth :piano
